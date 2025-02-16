@@ -41,7 +41,8 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS borrowed_books (
 
 # نمایش جداول پایگاه داده
 
-cursor.execute("SELECT * FROM books")
+# cursor.execute("SELECT * FROM books")
+cursor.execute("SELECT * FROM borrowers")
 
 
 

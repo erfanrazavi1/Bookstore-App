@@ -84,18 +84,32 @@ class LibraryApp:
             self.selected_book["values"] = [title] + list(self.selected_book["values"])
             self.book_title.delete(0, tk.END)
             self.book_author.delete(0, tk.END)
+            cursor.execute("SELECT * FROM book_store")
+            for row in cursor.fetchall():
+                print(row)
 
     def add_borrower(self):
         name = self.borrower_name.get()
         if name:
+            if not db.is_connected():
+                db.reconnect()
+            cursor.execute('INSERT INTO borrowers (name) VALUES (%s)',(name,))
+            db.commit()
             self.borrowers_list.insert("", "end", values=(name,))
             self.selected_borrower["values"] = [name] + list(self.selected_borrower["values"])
             self.borrower_name.delete(0, tk.END)
+            cursor.execute("SELECT * FROM borrowers")
+            for row in cursor.fetchall():
+                print(row)
+                
+            
+                
     
     def borrow_book(self):
         book = self.selected_book.get()
         borrower = self.selected_borrower.get()
         if book and borrower:
+            
             print(f"{borrower} borrowed {book}")
     
     def return_book(self):
