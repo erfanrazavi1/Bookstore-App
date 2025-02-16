@@ -4,10 +4,10 @@ import mysql.connector
 Establish connection to MySQL database 
 """
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="hasaniii1234",
-    database="book_store"
+    host="host_name",
+    user="your_username",
+    password="your_pass",
+    database="database_name"
 )
 
 cursor = db.cursor(buffered=True)
